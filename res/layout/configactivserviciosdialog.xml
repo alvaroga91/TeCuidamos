@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ToggleButton
+            android:id="@+id/tbAvisos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="Avisos de medicamentos OFF"
+            android:textOn="Avisos de medicamentos ON" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ToggleButton
+            android:id="@+id/tbZona"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="&apos;Zona Segura&apos; OFF"
+            android:textOn="&apos;Zona Segura&apos; ON" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ToggleButton
+            android:id="@+id/tbLocalizacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="Seguimiento de localización OFF" 
+            android:textOn="Seguimiento de localización ON" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ToggleButton
+            android:id="@+id/tbCaidas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="Detector de caídas al salir OFF"
+            android:textOn="Detector de caídas al salir ON" />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ToggleButton
+            android:id="@+id/tbCaidasCasa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="Detector de caídas en casa OFF"
+            android:textOn="Detector de caídas en casa ON" />
+    </LinearLayout>
+
+</LinearLayout>
