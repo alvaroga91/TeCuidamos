@@ -94,8 +94,8 @@ public class Main extends Activity implements OnClickListener,
 	private void showFirstDialog() {
 		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-		alert.setTitle("Nota");
-		alert.setMessage("Te recomendamos que configures la aplicación a tus necesidades desde el menú de Configuración para activar (o desactivar) los servicios que quieras.");
+		alert.setTitle(R.string.main1);
+		alert.setMessage(R.string.main2);
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
 			public void onClick(DialogInterface dialog, int whichButton) {
@@ -127,7 +127,7 @@ public class Main extends Activity implements OnClickListener,
 			startActivity(i);
 		} else if (v.getId() == R.id.bSalimos) {
 			toast = Toast.makeText(this,
-					"Obteniendo información del tiempo...", Toast.LENGTH_LONG);
+					R.string.main3, Toast.LENGTH_LONG);
 			toast.show();
 			getResponse();
 		}  else if (v.getId() == R.id.bConfig) {
@@ -150,7 +150,7 @@ public class Main extends Activity implements OnClickListener,
 		Button bCancelarZona = (Button) view.findViewById(R.id.bCancelarZona);
 		Button bCancelarLoc = (Button) view.findViewById(R.id.bCancelarLoc);
 
-		alert.setPositiveButton("Cerrar",
+		alert.setPositiveButton(R.string.main4,
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -170,24 +170,24 @@ public class Main extends Activity implements OnClickListener,
 					getApplicationContext();
 					if (!stopService(i))
 						t = Toast.makeText(context,
-								"Error al detener el servicio de caídas. ¿Está ya desactivado?",
+								R.string.main5,
 								Toast.LENGTH_SHORT);
 					else
 						t = Toast.makeText(context,
-								"Servicio de detección de caídas detenido",
+								R.string.main6,
 								Toast.LENGTH_SHORT);
 				} else if (v.getId() == R.id.bCancelarZona) {
 					ZonaAlarm alarm = new ZonaAlarm();
 					alarm.cancelAlarm(context);
 					t = Toast.makeText(context,
-							"Servicio de 'Zona Segura' detenido",
+							R.string.main7,
 							Toast.LENGTH_SHORT);
 
 				} else if (v.getId() == R.id.bCancelarLoc) {
 					InfoAlarm alarm = new InfoAlarm();
 					alarm.cancelAlarm(context);
 					t = Toast.makeText(context,
-							"Servicio de localización detenido",
+							R.string.main8,
 							Toast.LENGTH_SHORT);
 
 				}
@@ -249,8 +249,7 @@ public class Main extends Activity implements OnClickListener,
 
 				JSONObject jObj = new JSONObject(jsonResponse);
 
-				// String nombre = jObj.getString("name");
-				alert.setTitle("Posición actual");
+				alert.setTitle(R.string.main23);
 
 				JSONObject main = jObj.getJSONObject("main");
 
@@ -270,8 +269,8 @@ public class Main extends Activity implements OnClickListener,
 				iv.setImageDrawable(jsonIcon);
 				TextView tvTiempo = (TextView) view
 						.findViewById(R.id.tvTiempoTemp);
-				tvTiempo.setText("Temp: " + temp + "°\nLluvia: " + humedad
-						+ "%\nViento: " + viento);
+				tvTiempo.setText(context.getString(R.string.main24) + temp + "°\n"+context.getString(R.string.main25) + humedad
+						+ "%\n"+ context.getString(R.string.main26) + viento);
 
 				alert.setView(view);
 
@@ -281,13 +280,12 @@ public class Main extends Activity implements OnClickListener,
 					dialog.show();
 				else {
 					Toast.makeText(context,
-							"Error obteniendo la información del tiempo",
+							R.string.main22,
 							Toast.LENGTH_LONG).show();
 				}
 
 				if (settings.getBoolean("caidasOn", true)) {
 					Intent i = new Intent(context, GestorCaidasService.class);
-					Bundle b = new Bundle();
 					
 					context.startService(i);
 				}
@@ -302,45 +300,44 @@ public class Main extends Activity implements OnClickListener,
 				if (toast != null)
 					toast.cancel();
 
-				// setMailLocation();
-				String s = "Hace ";
+				String s = context.getString(R.string.main9)+" ";
 				if (temp >= (settings.getInt("muchoCalor", 30)))
-					s += "mucho calor, ";
+					s +=  context.getString(R.string.main10)+" ";
 				else if (temp >= (settings.getInt("calor", 24)))
-					s += "algo de calor, ";
+					s +=  context.getString(R.string.main11)+" ";
 				else if (temp <= (settings.getInt("muchoCalor", 16)))
-					s += "algo de frío, ";
+					s +=  context.getString(R.string.main12)+" ";
 				else if (temp <= (settings.getInt("muchoCalor", 7)))
-					s += "mucho frío, ";
+					s +=  context.getString(R.string.main13)+" ";
 				else
-					s += "buena temperatura, ";
+					s +=  context.getString(R.string.main14)+" ";
 
 				if (humedad >= (settings.getInt("lluvia", 70)))
-					s += "seguramente llueva ";
+					s +=  context.getString(R.string.main15)+" ";
 				else
-					s += "no es probable que llueva ";
+					s +=  context.getString(R.string.main16)+" ";
 
 				if (vientoInt >= 120)
-					s += "y hay vientos huracanados.";
+					s +=  context.getString(R.string.main17)+" ";
 				else if (vientoInt >= 71)
-					s += "y hay vientos muy fuertes.";
+					s +=  context.getString(R.string.main18)+" ";
 				else if (vientoInt >= 41)
-					s += "y hay vientos fuertes.";
+					s +=  context.getString(R.string.main19)+" ";
 				else if (vientoInt >= 21)
-					s += "y hay vientos moderados.";
+					s +=  context.getString(R.string.main20)+" ";
 				else
-					s += "y hay poco viento.";
+					s +=  context.getString(R.string.main21)+" ";
 				TextView tvInfoTiempo = (TextView) view
 						.findViewById(R.id.tvInfoTiempo);
 				tvInfoTiempo.setText(s);
 
 			} catch (Exception e) {
-				Toast.makeText(context, "Error al obtener la fecha",
+				Toast.makeText(context,R.string.main22,
 						Toast.LENGTH_SHORT).show();
 				e.printStackTrace();
 			}
 		} else {
-			Toast.makeText(context, "Error al obtener la fecha",
+			Toast.makeText(context,R.string.main22,
 					Toast.LENGTH_SHORT).show();
 		}
 	}
@@ -413,7 +410,6 @@ public class Main extends Activity implements OnClickListener,
 
 		for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
 			String title = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX);
-			System.out.println("Title " + title);
 		}
 
 	}

@@ -22,6 +22,7 @@ import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 
 import com.alvaroga.tecuidamos.CaidaDialog;
+import com.alvaroga.tecuidamos.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
@@ -102,11 +103,13 @@ public class GestorCaidasService extends Service implements
 		super.onStartCommand(intent, flags, startId);
 		locationClient = new LocationClient(this, this, this);
 
+		context = this;
+
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
 				this)
 				.setSmallIcon(com.alvaroga.tecuidamos.R.drawable.ic_launcher)
 				.setContentTitle("TeCuidamos")
-				.setContentText("Gestor de caídas activado");
+				.setContentText(context.getString(R.string.gestorcaidasactivado));
 		Intent i = new Intent(this, com.alvaroga.tecuidamos.Main.class);
 		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -121,8 +124,6 @@ public class GestorCaidasService extends Service implements
 
 		startForeground(1337, note);
 
-		context = this;
-		System.out.println("Servicio caidas on");
 
 		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		Sensor mAccelerometer = sensorManager

@@ -13,8 +13,8 @@
             android:id="@+id/tbAvisos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textOff="Avisos de medicamentos OFF"
-            android:textOn="Avisos de medicamentos ON" />
+            android:textOff="@string/configactivserviciosdialogoff1"
+            android:textOn="@string/configactivserviciosdialogon1" />
     </LinearLayout>
 
     <LinearLayout
@@ -25,8 +25,8 @@
             android:id="@+id/tbZona"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textOff="&apos;Zona Segura&apos; OFF"
-            android:textOn="&apos;Zona Segura&apos; ON" />
+            android:textOff="@string/configactivserviciosdialogoff2"
+            android:textOn="@string/configactivserviciosdialogon2" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,8 +37,8 @@
             android:id="@+id/tbLocalizacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textOff="Seguimiento de localización OFF" 
-            android:textOn="Seguimiento de localización ON" />
+            android:textOff="@string/configactivserviciosdialogoff3" 
+            android:textOn="@string/configactivserviciosdialogon3" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,8 +49,8 @@
             android:id="@+id/tbCaidas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textOff="Detector de caídas al salir OFF"
-            android:textOn="Detector de caídas al salir ON" />
+            android:textOff="@string/configactivserviciosdialogoff4"
+            android:textOn="@string/configactivserviciosdialogon4" />
     </LinearLayout>
      <LinearLayout
         android:layout_width="match_parent"
@@ -60,8 +60,8 @@
             android:id="@+id/tbCaidasCasa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textOff="Detector de caídas en casa OFF"
-            android:textOn="Detector de caídas en casa ON" />
+            android:textOff="@string/configactivserviciosdialogoff5"
+            android:textOn="@string/configactivserviciosdialogon5" />
     </LinearLayout>
 
 </LinearLayout>

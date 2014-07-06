@@ -27,10 +27,10 @@ public class Config extends ListActivity implements OnClickListener {
 	public void onCreate(Bundle lololol) {
 
 		super.onCreate(lololol);
-		String[] menu = new String[] { "Activación de servicios",
-				"Configuración de los servicios",
-				"Configuración de la temperatura",
-				"Restaurar valores por defecto" };
+		String[] menu = new String[] { getString(R.string.config1),
+				getString(R.string.config2),
+				getString(R.string.config3),
+				getString(R.string.config4) };
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, menu);
 		setListAdapter(adapter);
@@ -47,8 +47,8 @@ public class Config extends ListActivity implements OnClickListener {
 	private void showFirstDialog() {
 		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-		alert.setTitle("Configuración");
-		alert.setMessage("Ajusta la configuración de TeCuidamos para activar o desactivar los servicios que quieras, personalizar tiempos y modos de aviso, la configuración de las actividades o restaurar los valores por defecto.");
+		alert.setTitle(getString(R.string.config5));
+		alert.setMessage(getString(R.string.config6));
 
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
@@ -66,13 +66,13 @@ public class Config extends ListActivity implements OnClickListener {
 
 		switch (which) {
 		case 0:
-			alert.setMessage("Activa o desactiva los servicios que se ajusten a tus necesidades.");
+			alert.setMessage(getString(R.string.config7));
 			break;
 		case 1:
-			alert.setMessage("Configura el método y tiempos de aviso de los envíos de información del móvil a la persona de contacto");
+			alert.setMessage(getString(R.string.config8));
 			break;
 		case 2:
-			alert.setMessage("Configura las temperaturas que define cuánto es mucho calor, mucho frío, etc.");
+			alert.setMessage(getString(R.string.config9));
 			break;
 
 		case 3:
@@ -151,10 +151,10 @@ public class Config extends ListActivity implements OnClickListener {
 	private void showDialogPorDefecto() {
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-		alert.setTitle("Restaurar");
-		alert.setMessage("¿Estás seguro de que quieres restaurar los valores por defecto?");
+		alert.setTitle(getString(R.string.config11));
+		alert.setMessage(getString(R.string.config10));
 
-		alert.setPositiveButton("Restaurar",
+		alert.setPositiveButton(getString(R.string.config11),
 				new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog, int which) {
 
@@ -162,7 +162,7 @@ public class Config extends ListActivity implements OnClickListener {
 						editor.apply();
 					}
 				});
-		alert.setNegativeButton("Cancelar",
+		alert.setNegativeButton(getString(R.string.config12),
 				new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog, int which) {
 
@@ -276,7 +276,7 @@ public class Config extends ListActivity implements OnClickListener {
 					editor.apply();
 				} catch (Exception e) {
 					Toast.makeText(getApplicationContext(),
-							"Error al guardar la configuración",
+							getString(R.string.config13),
 							Toast.LENGTH_LONG).show();
 				}
 			}

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Nombre del medicamento"
+        android:text="@string/dialognuevoaviso1"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="Veces al día"
+            android:text="@string/dialognuevoaviso2"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
@@ -50,7 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="Pastillas disponibles"
+            android:text="@string/dialognuevoaviso3"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText

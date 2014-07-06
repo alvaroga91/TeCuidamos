@@ -55,7 +55,6 @@ public class SQLAvisos {
 	static final String columnas[] = new String[] { KEY_ROWID, KEY_NOMBRE,
 			KEY_VECES, KEY_HORAS, KEY_STOCK };
 
-	protected static final String NULL = "No hay avisos";
 
 	private static class DBHelper extends SQLiteOpenHelper {
 
@@ -186,7 +185,7 @@ public class SQLAvisos {
 		String[] array = new String[list.size()];
 		if (list.size() == 0) {
 			array = new String[1];
-			array[0] = SQLAvisos.NULL;
+			array[0] = context.getString(R.string.nohayavisos);
 		} else {
 			for (int i = 0; i < array.length; i++) {
 				array[i] = list.get(i);

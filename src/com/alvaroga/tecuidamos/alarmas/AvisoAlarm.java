@@ -39,7 +39,7 @@ public class AvisoAlarm extends BroadcastReceiver {
 		db.open();
 		db.reducirStock(nombre);
 		db.setNextAlarma(nombre,id);
-		if (db.getStock(nombre)<=10) Toast.makeText(context, "Quedan "+ db.getStock(nombre)+" dosis", Toast.LENGTH_LONG).show(); 
+		//if (db.getStock(nombre)<=10) Toast.makeText(context, "Quedan "+ db.getStock(nombre)+" dosis", Toast.LENGTH_LONG).show(); 
 		db.close();
 		
 		

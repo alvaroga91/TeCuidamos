@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 
 import com.alvaroga.tecuidamos.Mail;
+import com.alvaroga.tecuidamos.R;
 
 public class CaidaAlarm extends BroadcastReceiver {
 
@@ -59,13 +60,13 @@ public class CaidaAlarm extends BroadcastReceiver {
 			SharedPreferences settings) {
 		String numTelefono = settings.getInt("telefonoContacto", 0) + "";
 
-		String s = "TeCuidamos: Se ha detectado que su familiar se ha caído en "
+		String s = context.getString(R.string.caidaAlarm1)
 				+ direccion + ".";
 
 		SmsManager sms = SmsManager.getDefault();
-		System.out.println("telefono "+numTelefono);
+	
 		if (numTelefono.length()>0) sms.sendTextMessage(numTelefono, null, s, null, null);
-		System.out.println("SMS ENVIADO");
+		
 
 	}
 
@@ -74,8 +75,8 @@ public class CaidaAlarm extends BroadcastReceiver {
 		String user = settings.getString("mail", "");
 		String pass = settings.getString("pass", "");
 		Mail mail = new Mail(user, pass);
-		mail.sendMail(user, "Te Cuidamos: Detección de caída",
-				"Se ha detectado que su familiar se ha caído en  "
+		mail.sendMail(user,  context.getString(R.string.caidaAlarm2),
+				 context.getString(R.string.caidaAlarm3)
 						+ direccion+".");
 
 	}

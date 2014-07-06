@@ -22,6 +22,7 @@ import android.os.PowerManager;
 import android.telephony.SmsManager;
 
 import com.alvaroga.tecuidamos.Mail;
+import com.alvaroga.tecuidamos.R;
 import com.alvaroga.tecuidamos.background.JSON;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
@@ -64,14 +65,13 @@ public class InfoAlarm extends BroadcastReceiver implements
 		locationClient = new LocationClient(context, this, this);
 
 		locationClient.connect();
-		System.out.println("InfoAlarm");
 		ZonaAlarm alarm = new ZonaAlarm();
 		alarm.cancelAlarm(context);
 
 	}
 
 	public void setAlarm(Context context) {
-		System.out.println("InfoAlarm ON");
+
 
 		start = true;
 		AlarmManager am = (AlarmManager) context
@@ -126,10 +126,7 @@ public class InfoAlarm extends BroadcastReceiver implements
 
 		BigDecimal difLat = latNow.subtract(lat).abs();
 		BigDecimal difLon = lonNow.subtract(lon).abs();
-
-		System.out.println("diflat " + difLat);
-		System.out.println("diflon " + difLon);
-
+	
 		BigDecimal zonaSize = new BigDecimal(
 				settings.getInt("tamañoZona", 120), MathContext.DECIMAL64);
 		// 1 g = 111.111km
@@ -152,7 +149,7 @@ public class InfoAlarm extends BroadcastReceiver implements
 			SharedPreferences settings = context.getSharedPreferences("Prefs",
 					Context.MODE_MULTI_PROCESS);
 			int envio = settings.getInt("modoEnvio", 0);
-			String s = "Informamos que su familiar ha regresado a casa.";
+			String s =  context.getString(R.string.infoAlarm1);
 
 			switch (envio) {
 
@@ -199,7 +196,7 @@ public class InfoAlarm extends BroadcastReceiver implements
 				SharedPreferences settings = context.getSharedPreferences(
 						"Prefs", Context.MODE_MULTI_PROCESS);
 				int envio = settings.getInt("modoEnvio", 0);
-				String s = "Informamos que su familiar se encuentra en "
+				String s =  context.getString(R.string.infoAlarm2)
 						+ direccion + ".";
 
 				switch (envio) {
@@ -227,13 +224,12 @@ public class InfoAlarm extends BroadcastReceiver implements
 				JSONObject jObj = new JSONObject(jsonResponse);
 				JSONArray results = jObj.getJSONArray("results");
 				JSONObject first = results.getJSONObject(0);
-				System.out.println("adrres "
-						+ first.getString("formatted_address"));
+				
 				return (first.getString("formatted_address"));
 
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "Localizacion no disponible";
+				return  context.getString(R.string.infoAlarm3);
 
 			}
 		}
@@ -246,7 +242,6 @@ public class InfoAlarm extends BroadcastReceiver implements
 
 		SmsManager sms = SmsManager.getDefault();
 		sms.sendTextMessage(numTelefono, null, mensaje, null, null);
-		System.out.println("SMS Enviado");
 
 	}
 
@@ -255,7 +250,7 @@ public class InfoAlarm extends BroadcastReceiver implements
 		String user = settings.getString("mail", "");
 		String pass = settings.getString("pass", "");
 		Mail mail = new Mail(user, pass);
-		mail.sendMail(user, "Te Cuidamos: Actualización de posición", mensaje);
+		mail.sendMail(user,  context.getString(R.string.infoAlarm4), mensaje);
 
 	}
 

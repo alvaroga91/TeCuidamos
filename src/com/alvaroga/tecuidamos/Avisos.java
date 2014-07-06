@@ -50,7 +50,7 @@ public class Avisos extends Activity implements OnClickListener {
 		final String lista[] = db.getLista();
 		db.close();
 		numLista = lista.length;
-		if (lista[0].matches("No hay avisos"))
+		if (lista[0].matches(getString(R.string.avisos0)))
 			numLista = 0;
 		modeAdapter = new ArrayAdapter<String>(this, R.layout.entradas, lista);
 
@@ -61,7 +61,7 @@ public class Avisos extends Activity implements OnClickListener {
 			public void onItemClick(AdapterView<?> parent, View view,
 					final int pos, long idItem) {
 
-				if (lista[0] != SQLAvisos.NULL)
+				if (!lista[0].matches(context.getString(R.string.nohayavisos)))
 					showInfoDialog(lista, pos);
 
 			}
@@ -80,7 +80,7 @@ public class Avisos extends Activity implements OnClickListener {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		final View view = LayoutInflater.from(this).inflate(
 				R.layout.dialognuevoaviso, null);
-		builder.setTitle("Inserta los datos");
+		builder.setTitle(getString(R.string.avisos1));
 		builder.setView(view);
 
 		final Context context = this;
@@ -101,17 +101,17 @@ public class Avisos extends Activity implements OnClickListener {
 					if (Integer.parseInt(vecesStr) > 5
 							|| Integer.parseInt(vecesStr) < 1)
 						throw new Exception(
-								"Solo se permite de 1 a 5 veces por día");
+								getString(R.string.avisos2));
 					if (Integer.parseInt(stockStr) < 1)
 						throw new Exception(
-								"El stock tiene que ser mayor que 0");
+								getString(R.string.avisos3));
 
 					final View viewVeces = createHorasView(Integer
 							.parseInt(vecesStr));
 
 					AlertDialog.Builder builder2 = new AlertDialog.Builder(
 							context);
-					builder2.setTitle("Inserta las horas");
+					builder2.setTitle(getString(R.string.avisos4b));
 					builder2.setView(viewVeces);
 
 					builder2.setPositiveButton("OK",
@@ -131,7 +131,7 @@ public class Avisos extends Activity implements OnClickListener {
 
 											if (hora.length() != 5)
 												throw new Exception(
-														"Formato de hora incorrecto.");
+														getString(R.string.avisos4));
 											int horaI = Integer.parseInt(hora
 													.substring(0, 2));
 											int minI = Integer.parseInt(hora
@@ -139,10 +139,10 @@ public class Avisos extends Activity implements OnClickListener {
 
 											if (horaI < 0 || horaI > 23)
 												throw new Exception(
-														"Hora no válida");
+														getString(R.string.avisos5));
 											if (minI < 0 || minI > 59)
 												throw new Exception(
-														"Minutos no válidos");
+														getString(R.string.avisos6));
 
 											horas += hora + " ";
 
@@ -167,12 +167,12 @@ public class Avisos extends Activity implements OnClickListener {
 
 									} catch (SQLException e) {
 										Toast.makeText(context,
-												"Error al guardar entrada",
+												getString(R.string.avisos7),
 												Toast.LENGTH_SHORT).show();
 									} catch (Exception e) {
 										e.printStackTrace();
 										Toast.makeText(context,
-												"Error al formatear las horas",
+												getString(R.string.avisos8),
 												Toast.LENGTH_SHORT).show();
 										nuevoAvisoDialog();
 									}
@@ -180,7 +180,7 @@ public class Avisos extends Activity implements OnClickListener {
 								}
 							});
 
-					builder2.setNegativeButton("Cancelar",
+					builder2.setNegativeButton(getString(R.string.avisos9),
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
@@ -194,7 +194,7 @@ public class Avisos extends Activity implements OnClickListener {
 
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
-					Toast.makeText(context, "Error al obtener los datos",
+					Toast.makeText(context, getString(R.string.avisos10),
 							Toast.LENGTH_SHORT).show();
 					nuevoAvisoDialog();
 				} catch (Exception e) {
@@ -223,13 +223,13 @@ public class Avisos extends Activity implements OnClickListener {
 					llVeces.setLayoutParams(llTvParams);
 
 					TextView tv = new TextView(context);
-					tv.setText("Hora " + (i + 1));
+					tv.setText(getString(R.string.avisos11b) + (i + 1));
 					EditText et = new EditText(context);
 
 					et.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
 					if (i == 0) {
 						et.requestFocus();
-						et.setHint("Por ejemplo, 15:30");
+						et.setHint(getString(R.string.avisos11));
 					}
 					et.setId(i + 100);
 					et.setFilters(new InputFilter[] { new InputFilter.LengthFilter(
@@ -249,7 +249,7 @@ public class Avisos extends Activity implements OnClickListener {
 			}
 
 		});
-		builder.setNegativeButton("Cancelar",
+		builder.setNegativeButton(getString(R.string.avisos12),
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 
@@ -263,9 +263,9 @@ public class Avisos extends Activity implements OnClickListener {
 	private void showBorrarEntradaDialog(final int pos, final String[] lista) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-		builder.setTitle("Borrar entrada");
-		builder.setMessage("¿Estás seguro que deseas borrar esta entrada? No se harán futuros avisos");
-		builder.setPositiveButton("Borrar",
+		builder.setTitle(getString(R.string.avisos13));
+		builder.setMessage(getString(R.string.avisos14));
+		builder.setPositiveButton(getString(R.string.avisos15),
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						SQLAvisos db = new SQLAvisos(context);
@@ -282,7 +282,7 @@ public class Avisos extends Activity implements OnClickListener {
 						alarm.cancelAlarm(context, extras);
 					};
 				});
-		builder.setNegativeButton("Cancelar",
+		builder.setNegativeButton(getString(R.string.avisos12),
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 					};
@@ -295,8 +295,8 @@ public class Avisos extends Activity implements OnClickListener {
 		final View view = LayoutInflater.from(this).inflate(
 				R.layout.stockdialog, null);
 		builder.setView(view);
-		builder.setTitle("Dosis a añadir");
-		builder.setPositiveButton("Cambiar",
+		builder.setTitle(getString(R.string.avisos16));
+		builder.setPositiveButton(getString(R.string.avisos17),
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						EditText et = (EditText) view
@@ -314,7 +314,7 @@ public class Avisos extends Activity implements OnClickListener {
 						refreshList();
 					};
 				});
-		builder.setNegativeButton("Cancelar",
+		builder.setNegativeButton(getString(R.string.avisos12),
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 					};

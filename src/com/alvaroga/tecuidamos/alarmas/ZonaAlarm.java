@@ -22,6 +22,7 @@ import android.os.PowerManager;
 import android.telephony.SmsManager;
 
 import com.alvaroga.tecuidamos.Mail;
+import com.alvaroga.tecuidamos.R;
 import com.alvaroga.tecuidamos.background.JSON;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
@@ -64,12 +65,10 @@ public class ZonaAlarm extends BroadcastReceiver implements
 		locationClient = new LocationClient(context, this, this);
 
 		locationClient.connect();
-		System.out.println("ZonaAlarm");
 
 	}
 
 	public void setAlarm(Context context) {
-		System.out.println("ZonaAlarm ON");
 
 		start = true;
 		AlarmManager am = (AlarmManager) context
@@ -119,11 +118,7 @@ public class ZonaAlarm extends BroadcastReceiver implements
 
 	
 		BigDecimal difLat = latNow.subtract(lat).abs();
-		BigDecimal difLon =  lonNow.subtract(lon).abs();
-
-		System.out.println("diflat " + difLat.multiply(new BigDecimal(111111)));
-		System.out.println("diflon " + difLon.multiply(new BigDecimal(111111)));		
-		
+		BigDecimal difLon =  lonNow.subtract(lon).abs();		
 
 		BigDecimal zonaSize = new BigDecimal(settings.getInt("tamañoZona", 120),
 				MathContext.DECIMAL64); 
@@ -136,7 +131,6 @@ public class ZonaAlarm extends BroadcastReceiver implements
 
 		//if dif < g, esta dentro
 		if ((difLat.compareTo(g)==-1 || difLon.compareTo(g)==-1)) { // 120m a la redonda
-			System.out.println("Dentro de la zona");
 			try{
 				locationClient.disconnect();
 				}
@@ -147,7 +141,6 @@ public class ZonaAlarm extends BroadcastReceiver implements
 			wl.release();
 
 		} else {
-			System.out.println("Fuera de la zona");
 			cancelAlarm(context);
 			try{
 			locationClient.disconnect();
@@ -204,13 +197,12 @@ public class ZonaAlarm extends BroadcastReceiver implements
 				JSONObject jObj = new JSONObject(jsonResponse);
 				JSONArray results = jObj.getJSONArray("results");
 				JSONObject first = results.getJSONObject(0);
-				System.out.println("adrres "
-						+ first.getString("formatted_address"));
+				
 				return (first.getString("formatted_address"));
 
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "Localizacion no disponible";
+				return context.getString(R.string.infoAlarm3);
 
 			}
 		}
@@ -220,13 +212,12 @@ public class ZonaAlarm extends BroadcastReceiver implements
 			SharedPreferences settings) {
 
 		String numTelefono = settings.getInt("telefonoContacto", 0) + "";
-		String s = "TeCuidamos: Se informa que su familiar ha salido de la Zona Segura. Está en "
+		String s = context.getString(R.string.zonaAlarm1)
 				+ direccion;
 
 		SmsManager sms = SmsManager.getDefault();
 
 		sms.sendTextMessage(numTelefono, null, s, null, null);
-		System.out.println("SMS Enviado");
 
 	}
 
@@ -237,8 +228,8 @@ public class ZonaAlarm extends BroadcastReceiver implements
 		Mail mail = new Mail(user, pass);
 		mail.sendMail(
 				user,
-				"Te Cuidamos: Zona segura",
-				"Informamos que su familiar ha salido de la zona segura. Su última localización conocida es "
+				context.getString(R.string.zonaAlarm2),
+				context.getString(R.string.zonaAlarm3)
 						+ direccion + ".");
 
 	}

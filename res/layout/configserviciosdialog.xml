@@ -14,7 +14,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="left|center"
-            android:text="Método de envío" />
+            android:text="@string/configserviciosdialog1" />
 
         <Spinner
             android:id="@+id/spEnvios"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="Contraseña" />
+            android:text="@string/configserviciosdialog2" />
 
         <EditText
             android:id="@+id/etPass"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="left"
-            android:text="Teléfono de contacto" />
+            android:text="@string/configserviciosdialog3" />
 
         <EditText
             android:id="@+id/etTelefonoContacto"
@@ -84,7 +84,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.25"
             android:ems="10"
-            android:hint="9 dígitos"
             android:inputType="number"
             android:maxLength="9" >
         </EditText>
@@ -99,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="left"
-            android:text="Actualizar de posición" />
+            android:text="@string/configserviciosdialog4" />
 
         <EditText
             android:id="@+id/etActualiza"
@@ -121,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="left"
-            android:text="Comprobar &apos;Zona Segura&apos;" />
+            android:text="@string/configserviciosdialog5" />
 
         <EditText
             android:id="@+id/etZona"
@@ -143,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="left"
-            android:text="Sensibilidad de caída" />
+            android:text="@string/configserviciosdialog6" />
 
         <EditText
             android:id="@+id/etSensibilidadCaida"
@@ -168,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="left"
-            android:text="Aviso tras caída" />
+            android:text="@string/configserviciosdialog7" />
 
         <EditText
             android:id="@+id/etTiempoAviso"
@@ -192,7 +191,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="left"
-            android:text="Tamaño &apos;Zona Segura&apos;" />
+            android:text="@string/configserviciosdialog8" />
 
         <EditText
             android:id="@+id/etZonaSize"

@@ -11,7 +11,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="16dp"
-        android:background="@drawable/button_stopservicios" />
+        android:background="@drawable/rojo"
+        android:text="@string/botones4"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/bConfig"
@@ -19,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bAvisos"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/button_config" />
+        android:background="@drawable/amarillo"
+        android:text="@string/botones2" />
 
     <Button
         android:id="@+id/bAvisos"
@@ -28,7 +31,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:background="@drawable/button_medicamentos" />
+        android:background="@drawable/amarillo"
+        android:text="@string/botones1" />
 
     <Button
         android:id="@+id/bSalimos"
@@ -37,6 +41,8 @@
         android:layout_above="@+id/bDetener"
         android:layout_alignLeft="@+id/bConfig"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/button_home" />
+        android:background="@drawable/azulgrande"
+        android:text="@string/botones3"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

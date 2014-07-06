@@ -15,7 +15,8 @@
             android:id="@+id/bNuevoAviso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_newaviso" />
+            android:text="@string/botones5"
+            android:background="@drawable/amarillo" />
     </LinearLayout>
 
     <LinearLayout

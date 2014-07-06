@@ -14,7 +14,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:gravity="center"
-            android:text="Mucho calor si mayor que" />
+                   android:text="@string/configtempdialog1"
+/>
 
         <EditText
             android:id="@+id/etMuchoCalor"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:gravity="center"
-            android:text="Calor si mayor que" />
+            android:text="@string/configtempdialog2" />
 
         <EditText
             android:id="@+id/etCalor"
@@ -60,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:gravity="center"
-            android:text="Frío si menor que" />
+            android:text="@string/configtempdialog3" />
 
         <EditText
             android:id="@+id/etFrio"
@@ -81,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:gravity="center"
-            android:text="Mucho frío si menor que" />
+            android:text="@string/configtempdialog4"/>
 
         <EditText
             android:id="@+id/etMuchoFrio"
@@ -103,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:gravity="center"
-            android:text="Llueve si humedad mayor que" />
+           android:text="@string/configtempdialog5"/>
 
         <EditText
             android:id="@+id/etLluvia"
